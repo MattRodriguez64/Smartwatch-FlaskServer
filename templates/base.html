@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+	<div>
+		<nav class="navbar sticky navbar-dark bg-dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="https://github.com/MattRodriguez64/API-REST-Smartwatch">Smartwatch API - Website</a>
+		  </div>
+		</nav>
+	</div>
+{% block content %}{% endblock %}
+{% block graph %}{% endblock %}
+	<footer class="bg-light text-center text-lg-start fixed-bottom">
+	  <!-- Copyright -->
+	  <div class="text-center p-3 bg-dark text-light">
+	    © 2022 Copyright:
+	    <a class="link-warning" href="https://github.com/MattRodriguez64">Matt RODRIGUEZ</a>
+	  </div>
+	  <!-- Copyright -->
+	</footer>
+</body>
+</html>

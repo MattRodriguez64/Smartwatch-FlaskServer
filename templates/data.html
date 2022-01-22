@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% block title %} Datas View {% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Calorie</th>
+      <th scope="col">Sommeil</th>
+      <th scope="col">Pas</th>
+      <th scope="col">Rythme Cardiaque</th>
+      <th>Tension</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for elt in allUserDatas %}
+    <tr>
+      <td>{{ elt.calorie }}</td>
+      <td>{{ elt.sommeil }}</td>
+      <td>{{ elt.pas }}</td>
+      <td>{{ elt.rythmeCardiaque }}</td>
+      <td>{{ elt.tension }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+{% block graph %}
+<canvas id="myChart" style="width:100%;max-width:700px;margin:0px auto 100px auto;"></canvas>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ allNumber }},
+        datasets: [{
+            label: 'Nombre de Pas',
+            data: {{ allPas }},
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<canvas id="myChartCalories" style="width:100%;max-width:700px;margin:0px auto 100px auto;"></canvas>
+<script>
+const ctx2 = document.getElementById('myChartCalories').getContext('2d');
+const myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: {{ allNumber }},
+        datasets: [{
+            label: 'Nombre de Calories',
+            data: {{ allCalories }},
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<canvas id="myChartTension" style="width:100%;max-width:700px;margin:0px auto 100px auto;"></canvas>
+<script>
+const ctx3 = document.getElementById('myChartTension').getContext('2d');
+const myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: {{ allNumber }},
+        datasets: [{
+            label: 'Tension Moyenne Journalière',
+            data: {{ allTensions }},
+            backgroundColor: [
+                'rgba(255, 206, 86, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<canvas id="myChartRC" style="width:100%;max-width:700px;margin:0px auto 100px auto;"></canvas>
+<script>
+const ctx4 = document.getElementById('myChartRC').getContext('2d');
+const myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: {{ allNumber }},
+        datasets: [{
+            label: 'Rythme Cardiaque Moyen Journalier',
+            data: {{ allRythmes }},
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.2)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<canvas id="myChartSommeil" style="width:100%;max-width:700px;margin:0px auto 100px auto;"></canvas>
+<script>
+const ctx5 = document.getElementById('myChartSommeil').getContext('2d');
+const myChart5 = new Chart(ctx5, {
+    type: 'bar',
+    data: {
+        labels: {{ allNumber }},
+        datasets: [{
+            label: 'Temps de sommeil en minutes',
+            data: {{ allSommeil }},
+            backgroundColor: [
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+{% endblock %}
